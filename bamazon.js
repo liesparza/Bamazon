@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
     user: "root",
   
     // Your password
-    password: "1234567",
+    password: "marcela1",
     database: "bamazon_db"
   });
 
@@ -41,8 +41,31 @@ function putID(){
 
 name: "product-id",
 type:"input",
-message: "Give the ID of the product you would like to buy."
-    }]).then (function(answer))
+message: "Give the ID of the product you would like to buy.",
+validate: function(value) {
+    if (isNaN(value) === false) {
+      return true;
+    }
+    return false;
+  }
+
+    }
+]).then (function(answer)
+    {
+connection.query(
+    "UPDATE products SET ? WHERE ?",
+[
+{
+    product_id: answer.product-id
+}
+],
+
+
+)
+
+    }
+    
+    )
 
     
 }
